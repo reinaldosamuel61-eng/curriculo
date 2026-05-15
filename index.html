@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Profissional | Reinaldo</title>
+    
+    <!-- Importando o Tailwind CSS para estilização rápida e bonita -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importando ícones (FontAwesome) para as setinhas e contatos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        social: {
+                            bg: '#15202b',      /* Fundo escuro estilo Twitter/X */
+                            card: '#1e2732',    /* Fundo dos cartões */
+                            border: '#38444d',  /* Linhas divisórias */
+                            accent: '#1d9bf0'   /* Azul de destaque */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Define a cor de fundo geral do corpo da página */
+        body {
+            background-color: #15202b;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Oculta o conteúdo do "accordion" suavemente */
+        .conteudo-sanfona {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        /* Classe que o JavaScript vai adicionar para abrir o conteúdo */
+        .conteudo-aberto {
+            max-height: 500px; /* Um valor alto o suficiente para caber o texto */
+            transition: max-height 0.4s ease-in, padding 0.4s ease-in;
+        }
+
+        /* Rotação suave para a setinha do botão */
+        .icone-seta {
+            transition: transform 0.3s ease;
+        }
+        .seta-virada {
+            transform: rotate(180deg);
+        }
+
+        /* --- CSS para a Animação 3D do Certificado --- */
+        .perspectiva-3d {
+            perspective: 1000px; /* Cria a sensação de profundidade 3D na tela */
+        }
+        .cartao-3d {
+            transition: transform 0.8s;
+            transform-style: preserve-3d; /* Diz ao navegador que a frente e o verso são objetos 3D */
+        }
+        .virado {
+            transform: rotateY(180deg); /* Vira o cartão de cabeça para baixo lateralmente */
+        }
+        .frente-verso {
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden; /* Esconde a "costa" da imagem quando ela estiver virada */
+        }
+        .verso {
+            transform: rotateY(180deg); /* O verso já começa virado de costas por padrão */
+        }
+    </style>
+</head>
+<body class="antialiased flex justify-center min-h-screen">
+
+    <main class="w-full max-w-2xl border-x border-social-border min-h-screen pb-10">
+        
+        <!-- CABEÇALHO (CAPA E FOTO) -->
+        <header class="relative">
+            <!-- Imagem de Capa -->
+            <div class="h-48 w-full bg-social-accent bg-cover bg-center" style="background-image: url('img/capa.png');"></div>
+            
+            <!-- Foto de Perfil (usamos -mt-16 para subir a foto por cima da capa) -->
+            <div class="px-4 relative flex justify-between items-end -mt-16 mb-4">
+                <img src="img/perfil2.png" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-social-bg object-cover bg-social-card">
+                
+                <!-- Redes Sociais e Contatos -->
+                <div class="flex flex-wrap justify-end gap-3 mb-2">
+                    <!-- Telefone (Abre o discador no celular) -->
+                    <a href="tel:+5524998490510" class="text-gray-400 hover:text-white transition text-2xl" title="Telefone: (24) 9 9849-0510">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                    <!-- WhatsApp (Link já configurado com seu número) -->
+                    <a href="https://wa.me/5524998490510" target="_blank" class="text-gray-400 hover:text-[#25D366] transition text-2xl" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <!-- E-mail -->
+                    <a href="mailto:reinaldosamuel@hotmail.com" class="text-gray-400 hover:text-white transition text-2xl" title="E-mail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition text-2xl" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <!-- GitHub -->
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white transition text-2xl" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition text-2xl" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <!-- Facebook -->
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition text-2xl" title="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <!-- Google Maps (Caçapava - SP) -->
+                    <a href="https://www.google.com/maps/place/Caçapava+-+SP" target="_blank" class="text-gray-400 hover:text-[#EA4335] transition text-2xl" title="Localização: Caçapava - SP">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Informações do Perfil -->
+            <div class="px-4 pb-4 border-b border-social-border">
+                <h1 class="text-xl font-extrabold">Reinaldo Samuel de Souza Silva</h1>
+                
+                <p class="text-base mb-3">
+                    Buscar oportunidades de aprendizado e crescimento, onde possa aplicar meus conhecimentos acadêmicos e desenvolver habilidades práticas, contribuindo de forma positiva para o sucesso da empresa.
+                </p>
+            </div>
+        </header>
+
+        <!-- SESSÃO DOS TÓPICOS (A CASCATA) -->
+        <section class="px-4 mt-6 flex flex-col gap-3">
+            
+            <!-- Tópico 1: Dados Pessoais -->
+            <div class="border border-social-border rounded-xl bg-social-card overflow-hidden">
+                <button onclick="alternarSecao('dados-pessoais')" class="w-full px-5 py-4 flex justify-between items-center hover:bg-social-border transition">
+                    <span class="font-bold text-lg"><i class="fa-solid fa-user text-social-accent w-6"></i> Dados Pessoais</span>
+                    <i id="icone-dados-pessoais" class="fa-solid fa-chevron-down icone-seta text-gray-400"></i>
+                </button>
+                <div id="dados-pessoais" class="conteudo-sanfona px-5 text-gray-300">
+                    <ul class="space-y-3 py-3 border-t border-social-border mt-1 text-sm md:text-base">
+                        <li><strong>Email:</strong> reinaldosamuel@hotmail.com</li>
+                        <li><strong>Telefone:</strong> (24) 9 9849-0510 / Recado: (24) 9 9958-2305</li>
+                        <li><strong>Nascimento:</strong> 03/06/1991 (Resende-RJ)</li>
+                        <li><strong>Estado Civil:</strong> Casado</li>
+                        <li><strong>CNH:</strong> Categoria B (PCD)</li>
+                        <li><strong>Endereço:</strong> Rua Maria Antônia Sirino, 49, Vila Medeiros, Caçapava - SP</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tópico 2: Educação e Certificados -->
+            <div class="border border-social-border rounded-xl bg-social-card overflow-hidden">
+                <button onclick="alternarSecao('certificados')" class="w-full px-5 py-4 flex justify-between items-center hover:bg-social-border transition">
+                    <span class="font-bold text-lg"><i class="fa-solid fa-graduation-cap text-social-accent w-6"></i> Formação</span>
+                    <i id="icone-certificados" class="fa-solid fa-chevron-down icone-seta text-gray-400"></i>
+                </button>
+                <div id="certificados" class="conteudo-sanfona px-5 text-gray-300">
+                    <div class="py-3 border-t border-social-border mt-1 space-y-2">
+                        
+                        <!-- UNIVESP -->
+                        <div onclick="abrirCertificado('Bacharelando em Tecnologia da Informação', 'UNIVESP', 'img/cert-univesp-frente.jpg', 'img/cert-univesp-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Bacharelando em Tecnologia da Informação</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>UNIVESP</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+                        
+                        <!-- ETEC -->
+                        <div onclick="abrirCertificado('Técnico em Desenvolvimento de Sistemas', 'ETEC', 'img/cert-etec-frente.jpg', 'img/cert-etec-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Técnico em Desenvolvimento de Sistemas</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>ETEC</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- INSS -->
+                        <div onclick="abrirCertificado('Reabilitação Profissional (PCD)', 'INSS', 'img/cert-inss-frente.jpg', 'img/cert-inss-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Reabilitação Profissional (PCD)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>INSS</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tópico 3: Cursos -->
+            <div class="border border-social-border rounded-xl bg-social-card overflow-hidden">
+                <button onclick="alternarSecao('cursos')" class="w-full px-5 py-4 flex justify-between items-center hover:bg-social-border transition">
+                    <span class="font-bold text-lg"><i class="fa-solid fa-certificate text-social-accent w-6"></i> Cursos Extracurriculares</span>
+                    <i id="icone-cursos" class="fa-solid fa-chevron-down icone-seta text-gray-400"></i>
+                </button>
+                <div id="cursos" class="conteudo-sanfona px-5 text-gray-300">
+                    <div class="py-3 border-t border-social-border mt-1 space-y-2">
+                        
+                        <!-- INGLÊS BÁSICO -->
+                        <div onclick="abrirCertificado('Inglês Básico e Intermediário (320h)', 'SENAC', 'img/cert-ingles-basico-frente.jpg', 'img/cert-ingles-basico-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Inglês Básico (160h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>SENAC</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+                        
+                        <!-- INGLÊS INTERMEDIÁRIO -->
+                        <div onclick="abrirCertificado('Inglês Básico e Intermediário (320h)', 'SENAC', 'img/cert-ingles-intermediario-frente.jpg', 'img/cert-ingles-intermediario-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Inglês Intermediário (160h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>SENAC</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- EXCEL -->
+                        <div onclick="abrirCertificado('Excel do Básico ao Avançado (72h)', 'SENAC', 'img/certificado-excel-frente.jpg', 'img/certificado-excel-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Excel do Básico ao Avançado (72h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>SENAC</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+                        
+                        <!-- MANUTENÇÃO -->
+                        <div onclick="abrirCertificado('Manutenção de Microcomputadores (40h)', 'SENAC', 'img/cert-manutencao-frente.jpg', 'img/cert-manutencao-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Manutenção de Microcomputadores (40h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>SENAC</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+                        
+                        <!-- MICROLINS -->
+                        <div onclick="abrirCertificado('Windows, Power Point, Excel, Internet (72h)', 'Microlins', 'img/cert-microlins-frente.jpg', 'img/cert-microlins-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Windows, Power Point, Excel, Internet (72h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>Microlins</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tópico 4: Experiência -->
+            <div class="border border-social-border rounded-xl bg-social-card overflow-hidden">
+                <button onclick="alternarSecao('experiencia')" class="w-full px-5 py-4 flex justify-between items-center hover:bg-social-border transition">
+                    <span class="font-bold text-lg"><i class="fa-solid fa-briefcase text-social-accent w-6"></i> Experiência Profissional</span>
+                    <i id="icone-experiencia" class="fa-solid fa-chevron-down icone-seta text-gray-400"></i>
+                </button>
+                <div id="experiencia" class="conteudo-sanfona px-5 text-gray-300">
+                    <div class="py-3 border-t border-social-border mt-1 space-y-4">
+                        <div>
+                            <h3 class="font-bold text-white">Lancheiro</h3>
+                            <p class="text-sm text-gray-400">HIPERSERVE S.A • 26/04/2013 - Atual</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Garçom</h3>
+                            <p class="text-sm text-gray-400">RAFAEL J. S. PENA LTDA • 06/06/2012 - 26/04/2013</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Soldado</h3>
+                            <p class="text-sm text-gray-400">EXERCITO BRASILEIRO • 01/03/2010 - 02/04/2012</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- TELA FLUTUANTE DO CERTIFICADO (MODAL 3D) -->
+    <!-- Ele fica escondido por padrão com 'hidden' e 'opacity-0' -->
+    <div id="modal-certificado" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 hidden opacity-0 transition-opacity duration-300 px-4">
+        
+        <!-- Botão de fechar (O 'X' no canto) -->
+        <button onclick="fecharCertificado()" class="absolute top-6 right-6 text-white text-4xl hover:text-red-500 transition cursor-pointer z-50">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Informações do curso acima da imagem -->
+        <div class="text-center mb-6">
+            <h2 id="titulo-modal-curso" class="text-2xl font-bold text-white mb-1">Nome do Curso</h2>
+            <p id="subtitulo-modal-instituicao" class="text-social-accent">Instituição</p>
+            <p class="text-gray-400 text-sm mt-4 animate-pulse"><i class="fa-solid fa-hand-pointer"></i> Clique no certificado para virar</p>
+        </div>
+
+        <!-- A Mágica do Cartão 3D -->
+        <div class="perspectiva-3d w-full max-w-2xl aspect-[4/3] cursor-pointer" onclick="virarCertificado()">
+            <div id="cartao-3d-interno" class="cartao-3d w-full h-full relative">
+                
+                <!-- Frente do Certificado -->
+                <!-- CORREÇÃO AQUI: Adicionado inset-0 e removido o "relative" do final -->
+                <div class="frente-verso absolute inset-0 w-full h-full bg-[#1e2732] border-2 border-social-border rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(29,155,240,0.1)]">
+                    <!-- Adicionámos um 'id' à imagem e preparámos uma mensagem caso o ficheiro não seja encontrado -->
+                    <img id="imagem-modal-certificado" src="https://placehold.co/800x600/1e2732/ffffff?text=Frente+do+Certificado" alt="Frente do Certificado" class="w-full h-full object-cover transition-opacity">
+                    
+                    <!-- Mensagem de Certificado Indisponível -->
+                    <div id="texto-sem-imagem" class="absolute text-gray-400 hidden flex-col items-center z-10 text-center">
+                        <i class="fa-solid fa-file-circle-xmark text-5xl mb-3 opacity-50"></i>
+                        <span class="font-bold text-lg">Certificado Indisponível</span>
+                    </div>
+                </div>
+                
+                <!-- Verso do Certificado -->
+                <!-- CORREÇÃO AQUI: Adicionado inset-0 e removido o "relative" do final -->
+                <div class="frente-verso verso absolute inset-0 w-full h-full bg-[#1e2732] border-2 border-social-accent rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(29,155,240,0.3)]">
+                    <img id="imagem-modal-verso" src="https://placehold.co/800x600/15202b/ffffff?text=Verso+do+Certificado" alt="Verso do Certificado" class="w-full h-full object-cover transition-opacity">
+                    
+                    <!-- Mensagem de Verso Indisponível -->
+                    <div id="texto-sem-imagem-verso" class="absolute text-gray-400 hidden flex-col items-center z-10 text-center">
+                        <i class="fa-solid fa-file-circle-xmark text-5xl mb-3 opacity-50"></i>
+                        <span class="font-bold text-lg">Verso Indisponível</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Função responsável por abrir e fechar (alternar) os blocos de conteúdo.
+         * Recebe o 'idSecao' (identificador) do elemento que queremos abrir.
+         */
+        function alternarSecao(idSecao) {
+            // Pegamos o elemento do conteúdo e o ícone de setinha correspondente
+            const conteudo = document.getElementById(idSecao);
+            const icone = document.getElementById('icone-' + idSecao);
+
+            // Verificamos se a classe 'conteudo-aberto' existe no elemento
+            const estaAberto = conteudo.classList.contains('conteudo-aberto');
+
+            // Se estiver aberto, nós fechamos (removemos a classe)
+            if (estaAberto) {
+                conteudo.classList.remove('conteudo-aberto');
+                conteudo.style.paddingBottom = "0px"; // Remove o espaçamento inferior
+                icone.classList.remove('seta-virada'); // Volta a seta ao normal
+            } 
+            // Se estiver fechado, nós abrimos
+            else {
+                // Fechar todos os outros primeiros (opcional: efeito acordeão clássico)
+                // Se quiser que apenas um fique aberto por vez, descomente as próximas linhas:
+                /*
+                document.querySelectorAll('.conteudo-sanfona').forEach(el => {
+                    el.classList.remove('conteudo-aberto');
+                    el.style.paddingBottom = "0px";
+                });
+                document.querySelectorAll('.icone-seta').forEach(el => el.classList.remove('seta-virada'));
+                */
+
+                // Abre a seção clicada
+                conteudo.classList.add('conteudo-aberto');
+                conteudo.style.paddingBottom = "16px"; // Adiciona um respiro inferior
+                icone.classList.add('seta-virada'); // Vira a seta para cima
+            }
+        }
+
+        // --- FUNÇÕES DA TELA FLUTUANTE (MODAL 3D) ---
+
+        /**
+         * Função para abrir o modal. Ela recebe o nome do curso e da instituição
+         * que foram clicados para alterar os textos do modal dinamicamente.
+         * AGORA RECEBE A FRENTE E O VERSO!
+         */
+        function abrirCertificado(nomeCurso, instituicao, caminhoImagemFrente = 'https://placehold.co/800x600/1e2732/ffffff?text=Frente+Indisponivel', caminhoImagemVerso = 'https://placehold.co/800x600/15202b/ffffff?text=Verso+Indisponivel') {
+            const modal = document.getElementById('modal-certificado');
+            const cartaoInterno = document.getElementById('cartao-3d-interno');
+            
+            // Elementos da Frente
+            const imgElementFrente = document.getElementById('imagem-modal-certificado');
+            const textoErroFrente = document.getElementById('texto-sem-imagem');
+            
+            // Elementos do Verso
+            const imgElementVerso = document.getElementById('imagem-modal-verso');
+            const textoErroVerso = document.getElementById('texto-sem-imagem-verso');
+            
+            // 1. Atualiza os textos na tela flutuante
+            document.getElementById('titulo-modal-curso').innerText = nomeCurso;
+            document.getElementById('subtitulo-modal-instituicao').innerText = instituicao;
+            
+            // 2. Atualiza a imagem da FRENTE
+            imgElementFrente.src = caminhoImagemFrente;
+            
+            // Se a imagem falhar ao carregar (não existir na pasta), mostramos a mensagem
+            imgElementFrente.onerror = function() {
+                imgElementFrente.style.display = 'none'; // Esconde a imagem quebrada
+                textoErroFrente.classList.remove('hidden');
+                textoErroFrente.classList.add('flex'); // Mostra a mensagem centralizada
+            };
+            
+            // Se a imagem carregar com sucesso, mostramos a imagem
+            imgElementFrente.onload = function() {
+                imgElementFrente.style.display = 'block';
+                textoErroFrente.classList.add('hidden');
+                textoErroFrente.classList.remove('flex');
+            };
+
+            // 3. Atualiza a imagem do VERSO
+            imgElementVerso.src = caminhoImagemVerso;
+            
+            // Mesma lógica de erro para o verso
+            imgElementVerso.onerror = function() {
+                imgElementVerso.style.display = 'none';
+                textoErroVerso.classList.remove('hidden');
+                textoErroVerso.classList.add('flex');
+            };
+            imgElementVerso.onload = function() {
+                imgElementVerso.style.display = 'block';
+                textoErroVerso.classList.add('hidden');
+                textoErroVerso.classList.remove('flex');
+            };
+
+            // 4. Garante que o cartão comece sempre mostrando a frente
+            cartaoInterno.classList.remove('virado');
+
+            // 5. Mostra o modal
+            modal.classList.remove('hidden');
+            
+            // 6. Um pequeno atraso para a animação de opacidade funcionar suavemente
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        /**
+         * Função para fechar o modal suavemente.
+         */
+        function fecharCertificado() {
+            const modal = document.getElementById('modal-certificado');
+            
+            // Deixa transparente primeiro (inicia a animação)
+            modal.classList.add('opacity-0');
+            
+            // Espera a animação acabar (300ms) e então esconde de verdade da tela
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        /**
+         * Função que vira o cartão 3D no próprio eixo.
+         */
+        function virarCertificado() {
+            const cartaoInterno = document.getElementById('cartao-3d-interno');
+            
+            // O comando 'toggle' é um interruptor: se a classe não existe, ele põe; se existe, ele tira.
+            cartaoInterno.classList.toggle('virado');
+        }
+    </script>
+</body>
+</html>
