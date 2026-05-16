@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Profissional | Reinaldo</title>
+    <title>Reinaldo Samuel</title>
+    
+    <!-- Adicionando o Favicon -->
+    <link rel="icon" type="image/png" href="img/fav.png">
     
     <!-- Importando o Tailwind CSS para estilização rápida e bonita -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,10 +21,11 @@
                 extend: {
                     colors: {
                         social: {
-                            bg: '#15202b',      /* Fundo escuro estilo Twitter/X */
+                            bg: '#000000',      /* Fundo escuro adaptado para combinar com o card */
                             card: '#1e2732',    /* Fundo dos cartões */
                             border: '#38444d',  /* Linhas divisórias */
-                            accent: '#1d9bf0'   /* Azul de destaque */
+                            accent: '#1d9bf0',  /* Azul de destaque */
+                            neon: '#00FF00'     /* Verde Neon do Nome */
                         }
                     }
                 }
@@ -32,7 +36,6 @@
     <style>
         /* Define a cor de fundo geral do corpo da página */
         body {
-            background-color: #15202b;
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -46,8 +49,26 @@
 
         /* Classe que o JavaScript vai adicionar para abrir o conteúdo */
         .conteudo-aberto {
-            max-height: 500px; /* Um valor alto o suficiente para caber o texto */
+            max-height: 400px; /* Altura máxima antes de ativar a barra de rolagem */
+            overflow-y: auto;  /* Habilita a rolagem vertical quando passa do limite */
             transition: max-height 0.4s ease-in, padding 0.4s ease-in;
+        }
+
+        /* Deixando a barra de rolagem mais bonita e fina (estilo Dark Mode) */
+        .conteudo-aberto::-webkit-scrollbar {
+            width: 6px;
+        }
+        .conteudo-aberto::-webkit-scrollbar-track {
+            background: transparent;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .conteudo-aberto::-webkit-scrollbar-thumb {
+            background-color: #38444d;
+            border-radius: 10px;
+        }
+        .conteudo-aberto::-webkit-scrollbar-thumb:hover {
+            background-color: #1d9bf0;
         }
 
         /* Rotação suave para a setinha do botão */
@@ -60,86 +81,90 @@
 
         /* --- CSS para a Animação 3D do Certificado --- */
         .perspectiva-3d {
-            perspective: 1000px; /* Cria a sensação de profundidade 3D na tela */
+            perspective: 1000px;
         }
         .cartao-3d {
             transition: transform 0.8s;
-            transform-style: preserve-3d; /* Diz ao navegador que a frente e o verso são objetos 3D */
+            transform-style: preserve-3d;
         }
         .virado {
-            transform: rotateY(180deg); /* Vira o cartão de cabeça para baixo lateralmente */
+            transform: rotateY(180deg);
         }
         .frente-verso {
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden; /* Esconde a "costa" da imagem quando ela estiver virada */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .verso {
-            transform: rotateY(180deg); /* O verso já começa virado de costas por padrão */
+            transform: rotateY(180deg);
         }
     </style>
 </head>
-<body class="antialiased flex justify-center min-h-screen">
+<!-- Adicionada imagem de fundo fixa que cobre a tela toda -->
+<!-- Fundo escuro com tema de TI/Programação e overlay para não ofuscar o perfil -->
+<body class="antialiased flex justify-center min-h-screen bg-black bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop');">
 
-    <main class="w-full max-w-2xl border-x border-social-border min-h-screen pb-10">
+    <!-- Adicionada sombra pesada e bordas laterais para destacar o site no PC -->
+    <main class="w-full max-w-[450px] min-h-screen pb-10 bg-black shadow-[0_0_60px_rgba(0,0,0,0.9)] sm:border-x sm:border-social-border">
         
-        <!-- CABEÇALHO (CAPA E FOTO) -->
-        <header class="relative">
-            <!-- Imagem de Capa -->
-            <div class="h-48 w-full bg-social-accent bg-cover bg-center" style="background-image: url('img/capa.png');"></div>
+        <!-- CABEÇALHO ESTILO CARD (IGUAL À IMAGEM) -->
+        <header class="relative w-full rounded-t-[2rem] overflow-hidden">
             
-            <!-- Foto de Perfil (usamos -mt-16 para subir a foto por cima da capa) -->
-            <div class="px-4 relative flex justify-between items-end -mt-16 mb-4">
-                <img src="img/perfil2.png" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-social-bg object-cover bg-social-card">
-                
-                <!-- Redes Sociais e Contatos -->
-                <div class="flex flex-wrap justify-end gap-3 mb-2">
-                    <!-- Telefone (Abre o discador no celular) -->
-                    <a href="tel:+5524998490510" class="text-gray-400 hover:text-white transition text-2xl" title="Telefone: (24) 9 9849-0510">
-                        <i class="fa-solid fa-phone"></i>
-                    </a>
-                    <!-- WhatsApp (Link já configurado com seu número) -->
-                    <a href="https://wa.me/5524998490510" target="_blank" class="text-gray-400 hover:text-[#25D366] transition text-2xl" title="WhatsApp">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <!-- E-mail -->
-                    <a href="mailto:reinaldosamuel@hotmail.com" class="text-gray-400 hover:text-white transition text-2xl" title="E-mail">
-                        <i class="fa-solid fa-envelope"></i>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition text-2xl" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <!-- GitHub -->
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-white transition text-2xl" title="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <!-- Instagram -->
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition text-2xl" title="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <!-- Facebook -->
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition text-2xl" title="Facebook">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <!-- Google Maps (Caçapava - SP) -->
-                    <a href="https://www.google.com/maps/place/Caçapava+-+SP" target="_blank" class="text-gray-400 hover:text-[#EA4335] transition text-2xl" title="Localização: Caçapava - SP">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </a>
-                </div>
-            </div>
+            <!-- Imagem de Perfil (Preenche o topo do card) -->
+            <!-- Coloque o caminho real da sua foto aqui. Ex: img/perfil2.png -->
+            <img src="img/perfil3.png" onerror="this.src='https://placehold.co/600x800/1e2732/ffffff?text=Sua+Foto+Aqui'" alt="Foto de Perfil" class="w-full h-[750px] sm:h-[550px] object-cover object-top">
 
-            <!-- Informações do Perfil -->
-            <div class="px-4 pb-4 border-b border-social-border">
-                <h1 class="text-xl font-extrabold">Reinaldo Samuel de Souza Silva</h1>
+            
+
+            <!-- Gradiente Preto de Baixo para Cima -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black from-10% via-black/80 via-40% to-transparent pointer-events-none"></div>
+
+            <!-- Textos sobre a imagem (Nome e Bio) -->
+            <div class="absolute bottom-0 left-0 right-0 px-6 pb-8 flex flex-col items-center text-center">
+                <h1 class="text-[1.35rem] sm:text-2xl font-extrabold text-social-neon leading-tight tracking-wide drop-shadow-md whitespace-nowrap">
+                    Reinaldo Samuel de Souza Silva
+                </h1>
                 
-                <p class="text-base mb-3">
-                    Buscar oportunidades de aprendizado e crescimento, onde possa aplicar meus conhecimentos acadêmicos e desenvolver habilidades práticas, contribuindo de forma positiva para o sucesso da empresa.
+                <p class="text-white text-sm mt-5 max-w-[280px] leading-relaxed font-medium">
+                    Sou de Caçapava-SP e busco oportunidades de aprendizado e crescimento, onde possa aplicar meus conhecimentos acadêmicos e desenvolver habilidades práticas, contribuindo de forma positiva para o sucesso da empresa.
                 </p>
             </div>
         </header>
 
+        <!-- Redes Sociais e Contatos (Abaixo da Imagem) -->
+        <div class="flex flex-wrap justify-center gap-4 mt-6 mb-8 px-4">
+            <!-- Telefone -->
+            <a href="tel:+5524998490510" class="text-gray-400 hover:text-white transition text-2xl" title="Telefone: (24) 9 9849-0510">
+                <i class="fa-solid fa-phone"></i>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/5524998490510" target="_blank" class="text-gray-400 hover:text-[#25D366] transition text-2xl" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <!-- E-mail -->
+            <a href="mailto:reinaldosamuel@hotmail.com" class="text-gray-400 hover:text-white transition text-2xl" title="E-mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/reinaldo-samuel-souza-silva-6780a3121/?skipRedirect=true" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition text-2xl" title="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/reinaldosamuel61-eng" target="_blank" class="text-gray-400 hover:text-white transition text-2xl" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/reinaldo.samuel/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition text-2xl" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/reinaldo.samuel/" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition text-2xl" title="Facebook">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            
+        </div>
+
         <!-- SESSÃO DOS TÓPICOS (A CASCATA) -->
-        <section class="px-4 mt-6 flex flex-col gap-3">
+        <section class="px-4 flex flex-col gap-3">
             
             <!-- Tópico 1: Dados Pessoais -->
             <div class="border border-social-border rounded-xl bg-social-card overflow-hidden">
@@ -209,7 +234,7 @@
                     <div class="py-3 border-t border-social-border mt-1 space-y-2">
                         
                         <!-- INGLÊS BÁSICO -->
-                        <div onclick="abrirCertificado('Inglês Básico e Intermediário (320h)', 'SENAC', 'img/cert-ingles-basico-frente.jpg', 'img/cert-ingles-basico-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                        <div onclick="abrirCertificado('Inglês Básico (160h)', 'SENAC', 'img/cert-ingles-basico-frente.jpg', 'img/cert-ingles-basico-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
                             <h3 class="font-bold text-white group-hover:text-social-accent transition">Inglês Básico (160h)</h3>
                             <p class="text-sm text-gray-400 flex items-center justify-between">
                                 <span>SENAC</span>
@@ -218,7 +243,7 @@
                         </div>
                         
                         <!-- INGLÊS INTERMEDIÁRIO -->
-                        <div onclick="abrirCertificado('Inglês Básico e Intermediário (320h)', 'SENAC', 'img/cert-ingles-intermediario-frente.jpg', 'img/cert-ingles-intermediario-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                        <div onclick="abrirCertificado('Inglês Intermediário (160h)', 'SENAC', 'img/cert-ingles-intermediario-frente.jpg', 'img/cert-ingles-intermediario-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
                             <h3 class="font-bold text-white group-hover:text-social-accent transition">Inglês Intermediário (160h)</h3>
                             <p class="text-sm text-gray-400 flex items-center justify-between">
                                 <span>SENAC</span>
@@ -249,6 +274,78 @@
                             <h3 class="font-bold text-white group-hover:text-social-accent transition">Windows, Power Point, Excel, Internet (72h)</h3>
                             <p class="text-sm text-gray-400 flex items-center justify-between">
                                 <span>Microlins</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- ADMINISTRAÇÃO -->
+                        <div onclick="abrirCertificado('Administração (80h)', 'IPED', 'img/cert-adm-frente.jpg', 'img/cert-adm-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Administração (80h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>IPED</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- AUX ESCRITORIO -->
+                        <div onclick="abrirCertificado('Auxiliar de Escritório na Prática (80h)', 'IPED', 'img/cert-aux-adm-frente.jpg', 'img/cert-aux-adm-verso.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Auxiliar de Escritório na Prática (80h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>IPED</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- IMPLEMENTANDO BANCO DE DADOS -->
+                        <div onclick="abrirCertificado('Implementando Banco de Dados (15h)', 'FUNDAÇÃO BRADESCO', 'img/cert-implementando-banco-de-dados-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Implementando Banco de Dados (15h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>FUNDAÇÃO BRADESCO</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- FUNDAMENTOS DE TI -->
+                        <div onclick="abrirCertificado('Fundamentos de TI: Hardware e Software (7h)', 'FUNDAÇÃO BRADESCO', 'img/cert-fundamentos-ti-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Fundamentos de TI: Hardware e Software (7h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>FUNDAÇÃO BRADESCO</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- WORD INTERMEDIARIO -->
+                        <div onclick="abrirCertificado('Microsoft Word 2016 - Intermediário (12h)', 'FUNDAÇÃO BRADESCO', 'img/cert-word-intermediario-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Microsoft Word 2016 - Intermediário (12h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>FUNDAÇÃO BRADESCO</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- WORD BASICO -->
+                        <div onclick="abrirCertificado('Microsoft Word 2016 - Básico (9h)', 'FUNDAÇÃO BRADESCO', 'img/cert-word-basico-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Microsoft Word 2016 - Básico (9h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>FUNDAÇÃO BRADESCO</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- LOGICA DE PROGRAMAÇÃO -->
+                        <div onclick="abrirCertificado('Lógica de Programação: JavaScript (6h)', 'ALURA', 'img/cert-logica-programacao-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Lógica de Programação: JavaScript (6h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>ALURA</span>
+                                <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
+                            </p>
+                        </div>
+
+                        <!-- COMO CONSEGUIR UM NOVO EMPREGO -->
+                        <div onclick="abrirCertificado('Como Conseguir um Novo Emprego (4h)', 'FUNDAÇÃO BRADESCO', 'img/cert-como-conseguir-um-novo-emprego-frente.jpg')" class="cursor-pointer hover:bg-social-border p-3 rounded-lg transition group">
+                            <h3 class="font-bold text-white group-hover:text-social-accent transition">Como Conseguir um Novo Emprego (4h)</h3>
+                            <p class="text-sm text-gray-400 flex items-center justify-between">
+                                <span>FUNDAÇÃO BRADESCO</span>
                                 <span class="text-xs text-social-accent opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-eye"></i> Ver certificado</span>
                             </p>
                         </div>
@@ -285,44 +382,32 @@
     </main>
 
     <!-- TELA FLUTUANTE DO CERTIFICADO (MODAL 3D) -->
-    <!-- Ele fica escondido por padrão com 'hidden' e 'opacity-0' -->
-    <div id="modal-certificado" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 hidden opacity-0 transition-opacity duration-300 px-4">
+    <!-- Adicionado o onclick="fecharAoClicarFora(event)" no fundo do modal -->
+    <div id="modal-certificado" onclick="fecharAoClicarFora(event)" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 hidden opacity-0 transition-opacity duration-300 px-4">
         
-        <!-- Botão de fechar (O 'X' no canto) -->
         <button onclick="fecharCertificado()" class="absolute top-6 right-6 text-white text-4xl hover:text-red-500 transition cursor-pointer z-50">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <!-- Informações do curso acima da imagem -->
         <div class="text-center mb-6">
             <h2 id="titulo-modal-curso" class="text-2xl font-bold text-white mb-1">Nome do Curso</h2>
             <p id="subtitulo-modal-instituicao" class="text-social-accent">Instituição</p>
-            <p class="text-gray-400 text-sm mt-4 animate-pulse"><i class="fa-solid fa-hand-pointer"></i> Clique no certificado para virar</p>
+            <p class="text-social-neon text-sm mt-4 animate-pulse"><i class="fa-solid fa-hand-pointer"></i> Clique no certificado para virar</p>
         </div>
 
-        <!-- A Mágica do Cartão 3D -->
         <div class="perspectiva-3d w-full max-w-2xl aspect-[4/3] cursor-pointer" onclick="virarCertificado()">
             <div id="cartao-3d-interno" class="cartao-3d w-full h-full relative">
                 
-                <!-- Frente do Certificado -->
-                <!-- CORREÇÃO AQUI: Adicionado inset-0 e removido o "relative" do final -->
                 <div class="frente-verso absolute inset-0 w-full h-full bg-[#1e2732] border-2 border-social-border rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(29,155,240,0.1)]">
-                    <!-- Adicionámos um 'id' à imagem e preparámos uma mensagem caso o ficheiro não seja encontrado -->
                     <img id="imagem-modal-certificado" src="https://placehold.co/800x600/1e2732/ffffff?text=Frente+do+Certificado" alt="Frente do Certificado" class="w-full h-full object-cover transition-opacity">
-                    
-                    <!-- Mensagem de Certificado Indisponível -->
                     <div id="texto-sem-imagem" class="absolute text-gray-400 hidden flex-col items-center z-10 text-center">
                         <i class="fa-solid fa-file-circle-xmark text-5xl mb-3 opacity-50"></i>
                         <span class="font-bold text-lg">Certificado Indisponível</span>
                     </div>
                 </div>
                 
-                <!-- Verso do Certificado -->
-                <!-- CORREÇÃO AQUI: Adicionado inset-0 e removido o "relative" do final -->
                 <div class="frente-verso verso absolute inset-0 w-full h-full bg-[#1e2732] border-2 border-social-accent rounded-xl overflow-hidden flex items-center justify-center shadow-[0_0_30px_rgba(29,155,240,0.3)]">
                     <img id="imagem-modal-verso" src="https://placehold.co/800x600/15202b/ffffff?text=Verso+do+Certificado" alt="Verso do Certificado" class="w-full h-full object-cover transition-opacity">
-                    
-                    <!-- Mensagem de Verso Indisponível -->
                     <div id="texto-sem-imagem-verso" class="absolute text-gray-400 hidden flex-col items-center z-10 text-center">
                         <i class="fa-solid fa-file-circle-xmark text-5xl mb-3 opacity-50"></i>
                         <span class="font-bold text-lg">Verso Indisponível</span>
@@ -334,87 +419,50 @@
     </div>
 
     <script>
-        /**
-         * Função responsável por abrir e fechar (alternar) os blocos de conteúdo.
-         * Recebe o 'idSecao' (identificador) do elemento que queremos abrir.
-         */
         function alternarSecao(idSecao) {
-            // Pegamos o elemento do conteúdo e o ícone de setinha correspondente
             const conteudo = document.getElementById(idSecao);
             const icone = document.getElementById('icone-' + idSecao);
-
-            // Verificamos se a classe 'conteudo-aberto' existe no elemento
             const estaAberto = conteudo.classList.contains('conteudo-aberto');
 
-            // Se estiver aberto, nós fechamos (removemos a classe)
             if (estaAberto) {
                 conteudo.classList.remove('conteudo-aberto');
-                conteudo.style.paddingBottom = "0px"; // Remove o espaçamento inferior
-                icone.classList.remove('seta-virada'); // Volta a seta ao normal
-            } 
-            // Se estiver fechado, nós abrimos
-            else {
-                // Fechar todos os outros primeiros (opcional: efeito acordeão clássico)
-                // Se quiser que apenas um fique aberto por vez, descomente as próximas linhas:
-                /*
-                document.querySelectorAll('.conteudo-sanfona').forEach(el => {
-                    el.classList.remove('conteudo-aberto');
-                    el.style.paddingBottom = "0px";
-                });
-                document.querySelectorAll('.icone-seta').forEach(el => el.classList.remove('seta-virada'));
-                */
-
-                // Abre a seção clicada
+                conteudo.style.paddingBottom = "0px";
+                icone.classList.remove('seta-virada');
+            } else {
                 conteudo.classList.add('conteudo-aberto');
-                conteudo.style.paddingBottom = "16px"; // Adiciona um respiro inferior
-                icone.classList.add('seta-virada'); // Vira a seta para cima
+                conteudo.style.paddingBottom = "16px";
+                icone.classList.add('seta-virada');
             }
         }
 
-        // --- FUNÇÕES DA TELA FLUTUANTE (MODAL 3D) ---
+        let controleHistoricoModal = false;
 
-        /**
-         * Função para abrir o modal. Ela recebe o nome do curso e da instituição
-         * que foram clicados para alterar os textos do modal dinamicamente.
-         * AGORA RECEBE A FRENTE E O VERSO!
-         */
         function abrirCertificado(nomeCurso, instituicao, caminhoImagemFrente = 'https://placehold.co/800x600/1e2732/ffffff?text=Frente+Indisponivel', caminhoImagemVerso = 'https://placehold.co/800x600/15202b/ffffff?text=Verso+Indisponivel') {
             const modal = document.getElementById('modal-certificado');
             const cartaoInterno = document.getElementById('cartao-3d-interno');
             
-            // Elementos da Frente
             const imgElementFrente = document.getElementById('imagem-modal-certificado');
             const textoErroFrente = document.getElementById('texto-sem-imagem');
             
-            // Elementos do Verso
             const imgElementVerso = document.getElementById('imagem-modal-verso');
             const textoErroVerso = document.getElementById('texto-sem-imagem-verso');
             
-            // 1. Atualiza os textos na tela flutuante
             document.getElementById('titulo-modal-curso').innerText = nomeCurso;
             document.getElementById('subtitulo-modal-instituicao').innerText = instituicao;
             
-            // 2. Atualiza a imagem da FRENTE
             imgElementFrente.src = caminhoImagemFrente;
-            
-            // Se a imagem falhar ao carregar (não existir na pasta), mostramos a mensagem
             imgElementFrente.onerror = function() {
-                imgElementFrente.style.display = 'none'; // Esconde a imagem quebrada
+                imgElementFrente.style.display = 'none';
                 textoErroFrente.classList.remove('hidden');
-                textoErroFrente.classList.add('flex'); // Mostra a mensagem centralizada
+                textoErroFrente.classList.add('flex');
             };
-            
-            // Se a imagem carregar com sucesso, mostramos a imagem
             imgElementFrente.onload = function() {
                 imgElementFrente.style.display = 'block';
                 textoErroFrente.classList.add('hidden');
                 textoErroFrente.classList.remove('flex');
             };
 
-            // 3. Atualiza a imagem do VERSO
             imgElementVerso.src = caminhoImagemVerso;
-            
-            // Mesma lógica de erro para o verso
             imgElementVerso.onerror = function() {
                 imgElementVerso.style.display = 'none';
                 textoErroVerso.classList.remove('hidden');
@@ -426,42 +474,65 @@
                 textoErroVerso.classList.remove('flex');
             };
 
-            // 4. Garante que o cartão comece sempre mostrando a frente
             cartaoInterno.classList.remove('virado');
-
-            // 5. Mostra o modal
             modal.classList.remove('hidden');
             
-            // 6. Um pequeno atraso para a animação de opacidade funcionar suavemente
+            // Adiciona um estado no histórico para o botão "Voltar" do celular funcionar
+            history.pushState({ modalAberto: true }, "");
+            controleHistoricoModal = true;
+            
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
             }, 10);
         }
 
-        /**
-         * Função para fechar o modal suavemente.
-         */
-        function fecharCertificado() {
+        // Adicionado o parâmetro para saber se foi o botão voltar que chamou a função
+        function fecharCertificado(peloBotaoVoltar = false) {
             const modal = document.getElementById('modal-certificado');
             
-            // Deixa transparente primeiro (inicia a animação)
+            // Se já estiver escondido, não faz nada para evitar bugs
+            if (modal.classList.contains('hidden')) return;
+
             modal.classList.add('opacity-0');
-            
-            // Espera a animação acabar (300ms) e então esconde de verdade da tela
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 300);
+
+            // Se fechamos pelo "X", clicando fora ou Esc, voltamos o histórico manualmente
+            if (!peloBotaoVoltar && controleHistoricoModal) {
+                history.back();
+            }
+            controleHistoricoModal = false;
         }
 
-        /**
-         * Função que vira o cartão 3D no próprio eixo.
-         */
+        // Função que verifica se o clique foi no fundo escuro
+        function fecharAoClicarFora(event) {
+            if (event.target.id === 'modal-certificado') {
+                fecharCertificado();
+            }
+        }
+
         function virarCertificado() {
             const cartaoInterno = document.getElementById('cartao-3d-interno');
-            
-            // O comando 'toggle' é um interruptor: se a classe não existe, ele põe; se existe, ele tira.
             cartaoInterno.classList.toggle('virado');
         }
+
+        // --- EVENTOS DO TECLADO E BOTÃO VOLTAR ---
+
+        // Tecla ESC fecha o certificado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                fecharCertificado();
+            }
+        });
+
+        // Botão voltar do celular fecha o certificado
+        window.addEventListener('popstate', function(event) {
+            if (controleHistoricoModal) {
+                // Passamos 'true' para indicar que foi o botão voltar que chamou a função
+                fecharCertificado(true);
+            }
+        });
     </script>
 </body>
 </html>
